@@ -1,0 +1,9 @@
+table ID {
+    name: string
+    symbol: number
+}
+
+table Requests {
+    fromId: string
+    toId: string
+}

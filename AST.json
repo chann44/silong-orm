@@ -1,0 +1,24 @@
+[
+    {
+        "type": "table",
+        "name": "ID",
+        "schema": [
+            {
+                "name": "id",
+                "type": "number",
+                "default": 90,
+                "cond": {
+                    "type": "binary",
+                    "operator": ">",
+                    "left": { "type": "var", "value": "id" },
+                    "right": { "type": "number", "value": 10 }
+                }
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "length": "100"
+            }
+        ]
+    }
+]

@@ -1,0 +1,1 @@
+{"prog":"Database","tables":[{"type":"table","name":"ID","variables":[{"name":"name","type":"string"},{"name":"symbol","type":"number"}]},{"type":"table","name":"Requests","variables":[{"name":"fromId","type":"string"},{"name":"toId","type":"string"}]}]}
