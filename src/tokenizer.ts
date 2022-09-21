@@ -69,15 +69,81 @@ const main = async () => {
 			let colon = false
 			let variableName = '', type = ''
 			let breaked = false
+			let attributes: any[] = []
 			for(let j = i; j < file.length; j++) {
-				if(file[j] == '@' || file[j] == '\n') {
+				if(file[j] == '\n') {
 					let k = j
 					for(k < file.length; k++;) {
-						console.log(k, file[k])
 						if(file[k] == '\n' || file[k] == '}') break
 					}
 					i += (k - i)
 					break
+				}
+				
+				if(file[j] == '@') {
+					let k = j - 1; 
+					console.log(j, k, "jk")
+					for(k < file.length; ++k;) {
+						console.log(j, k, "jk1")
+						if(file[k] == '\n' || file[k] == '}') break
+						if(file[k] == '@') continue
+
+						let a = {
+							name: "",
+							value: ""
+						}
+						let name = true
+
+						let x = k - 1;
+						
+						console.log(x, j, k, "xjk")
+						for(x < file.length; x++;) {
+							console.log(x, j, k, "xjk1")
+							if(file[x] == '@' || file[i] == ' ') continue
+							if(file[x] == '(') {
+								name = false
+								continue
+							}
+
+							if(name) {
+								a.name += file[x]
+							} else {
+								if(file[x] == ')') break
+								a.value += file[x]
+							}
+						}
+
+						attributes.push(a)
+
+						k += (x - k)
+					}
+
+					i += (k - i)
+					
+					// let k = j
+					// let a = {
+					// 	name: "",
+					// 	value: ""
+					// }
+					// console.log(a, "A")
+					// let name = true
+					// for(k < file.length; k++;) {
+					// 	if(file[k] == ' ' || file[k] == '\n' || file[k] == '}') break
+
+					// 	if(file[k] == '(') {
+					// 		name = false
+					// 		continue
+					// 	}
+					// 	if(name) a.name += file[k]
+					// 	else {
+					// 		if(file[k] != ')') a.value += file[k]
+					// 	}
+					// }
+					// console.log(a)
+					// attributes.push(a)
+					// i += (k - i)
+					// // console.log(i, file[i])
+					// break
 				}
 				
 				if(breaked || file[j] == '\n' || file[j] == '{' || file[j] == '}') {
@@ -112,7 +178,8 @@ const main = async () => {
 			}
 			AST.tables[tableIndex].variables.push({
 				name: variableName,
-				type: type
+				type: type,
+				attributes: attributes
 			})
 		}
 		pos++

@@ -1,5 +1,5 @@
 table ID {
-    name: string
+    name: string @length(100) @default("SAtyam")
     symbol: number
 }
 
