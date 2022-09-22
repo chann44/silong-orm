@@ -5,5 +5,6 @@ table ID {
 
 table Requests {
     fromId: string
-    toId: string
+    toId: string @length(100)
+    idd: ID @on_delete(CASCADE)
 }
